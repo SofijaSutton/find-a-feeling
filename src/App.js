@@ -1,5 +1,6 @@
 import logo from './find-a-feeling-no-background.png';
 import './App.css';
+import { Button } from "./components/ui/button"
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         </p>
           Find-a-Feeling
       </header>
+      <Button>Click me</Button>
+
     </div>
   );
 }
