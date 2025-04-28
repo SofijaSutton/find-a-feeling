@@ -69,6 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+<<<<<<< HEAD
 
 ## 📂 PROJECT: Find-a-Feeling
 
@@ -136,3 +137,18 @@ A progressive web app (PWA) designed to support emotional awareness through an i
 - AA accessible with future plans to make bi-lingual, and voice responsive
 
 
+=======
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      // ... (your theme configuration)
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+}
+>>>>>>> master
