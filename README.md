@@ -137,9 +137,13 @@ A progressive web app (PWA) designed to support emotional awareness through an i
 - AA accessible with future plans to make bi-lingual, and voice responsive
 
 
-Round 1 UI designs:
+### Round 1 UI designs:
 
--- Landing Page
+#### Landing Page:
+**Notes:**
+- have body text wrap edge for wheel
+- make header and footer colors more hierarchical
+- update wheel image with quiz details
 <img width="1692" alt="find-a-feeling landing page ui round 1" src="https://github.com/user-attachments/assets/2ca2187e-1f77-40bb-9ace-6d85e7627ab8" />
 
 
