@@ -137,18 +137,9 @@ A progressive web app (PWA) designed to support emotional awareness through an i
 - AA accessible with future plans to make bi-lingual, and voice responsive
 
 
-=======
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {
-      // ... (your theme configuration)
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-}
->>>>>>> master
+Round 1 UI designs:
+
+-- Landing Page
+<img width="1692" alt="find-a-feeling landing page ui round 1" src="https://github.com/user-attachments/assets/2ca2187e-1f77-40bb-9ace-6d85e7627ab8" />
+
+
