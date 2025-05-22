@@ -146,3 +146,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Target the wrapper div of the NavigationMenuList */
+.custom-nav-menu > div {
+  width: 50% !important;
+}
+className={cn("w-full flex justify-end bg-orange-400 radix-nav-wrapper", className)}

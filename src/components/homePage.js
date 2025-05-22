@@ -3,8 +3,8 @@ import React from 'react'
 function HomePage() {
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the Find-a-Feeling app!</p>
+      <h1>Find-a-Feeling</h1>
+      <h2>About Somatic Awareness</h2>
     </div>
   )
 }

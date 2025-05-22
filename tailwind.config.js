@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config  // Add this safelist to ensure the border-border class is generated
+/** @type {import('tailwindcss').Config}  // Add this safelist to ensure the border-border class is generated
   safelist: ['border-border'],
 } */
 module.exports = {
@@ -43,6 +43,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontFamily: {
+        slab: ['"Alfa Slab One"', 'serif'],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -64,6 +67,15 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.radix-nav-wrapper': {
+          width: '50% !important',
+        },
+      }
+      addUtilities(newUtilities)
+    }]
 }
 
