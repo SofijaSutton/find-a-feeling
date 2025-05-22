@@ -12,15 +12,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <AppNavigationMenu />
-        <header className="Find-a-Feeling">
-          <img src={logo} className="App-logo" alt="find-a-feeling logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          Find-a-Feeling
-        </header>
-        <Button>Click me</Button>
+      <AppNavigationMenu 
+        logo={logo}
+        title="Find-a-Feeling"
+      />
+        <Button className="mt-8">Start Quiz</Button>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/quiz" element={<QuizPage />} />
