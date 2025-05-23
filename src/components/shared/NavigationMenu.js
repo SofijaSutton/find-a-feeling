@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '../../components/ui/navigation-menu';
 import createNavigationStyles from './NavigationMenuStyles';
+import Divider from './Divider';
 
-function AppNavigationMenu({ logo, title }) {
+function AppNavigationMenu({ logo, title, onModeChange }) {
+  // Initialize state from localStorage if available
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDiscoveryMode, setIsDiscoveryMode] = useState(false);
+  const [isDiscoveryMode, setIsDiscoveryMode] = useState(() => {
+    const savedMode = localStorage.getItem('discoveryMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
   const location = useLocation();
+
+  // Save discovery mode preference to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('discoveryMode', JSON.stringify(isDiscoveryMode));
+    // Call the onModeChange callback to update app-wide styles
+    if (onModeChange) {
+      onModeChange(isDiscoveryMode);
+    }
+  }, [isDiscoveryMode, onModeChange]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDiscoveryMode = () => setIsDiscoveryMode(!isDiscoveryMode);
@@ -75,9 +89,9 @@ function AppNavigationMenu({ logo, title }) {
         </div>
         
         {/* Center divider - only visible on larger screens */}
-        <div 
-          className={styles.divider}
-          style={{ minWidth: '50px', marginTop: '30px' }}
+        <Divider 
+          className="hidden lg:block flex-grow mx-8" 
+          style={{ marginBottom: '-8px' }}
         />
         
         {/* Right side with discovery mode toggle and navigation */}

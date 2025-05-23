@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+  transition: background-color 0.3s ease;
+  min-height: 100vh;
 }
 
 .App-logo {
-  height: 5em;
+  height: 40vmin;
   pointer-events: none;
 }
 
@@ -35,4 +37,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Add smooth transitions for color changes */
+.App, .App * {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
