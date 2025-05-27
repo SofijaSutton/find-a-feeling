@@ -55,7 +55,7 @@ function NavigationMenuTrigger({ className, children, ...props }) {
     >
       {children}
       <ChevronDownIcon
-        className="ml-1 transition-transform duration-200 group-data-[state=open]:rotate-180"
+        className="ml-1 transition-transform duration-100 group-data-[state=open]:rotate-180"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
