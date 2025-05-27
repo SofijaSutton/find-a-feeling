@@ -32,15 +32,18 @@ const createNavigationStyles = (isDiscoveryMode) => {
   const colors = {
     // Background colors
     bg: isDiscoveryMode ? "bg-[#f0e448]" : "bg-[#1d1203]",
+    altBg: isDiscoveryMode ? "bg-[#fff1be]" : "bg-[#291904]",
     toggleBg: isDiscoveryMode ? "bg-[#000]" : "bg-[#84520d]",
-    menuItemBg: isDiscoveryMode ? "bg-[#f0e448]" : "",
     activeItemBg: isDiscoveryMode ? "bg-[#ff0000]" : "",
     hoverBgActive: isDiscoveryMode ? "hover:bg-[#800000]" : "hover:bg-[#2a1c05]",
-    hoverBgInactive: isDiscoveryMode ? "hover:bg-[#e6da40]" : "hover:bg-[#2a1c05]",
+    hoverBgInactive: isDiscoveryMode ? "hover:bg-[#e6da40]" : "hover:bg-[#1d1203]",
     
     // Text colors
     text: isDiscoveryMode ? "text-[#1d1203]" : "text-[#fff1be]",
     title: isDiscoveryMode ? "text-[#ff0000]" : "text-[#fff1be]",
+    altTitle: isDiscoveryMode ? "text-[#009422]" : "text-[#9c2ca0]",
+    titleHex: isDiscoveryMode? "#009422" : "#f9d93d",  // will want to recategorize this
+    altTitleH2: isDiscoveryMode ? "text-[#000]" : "text-[#fff1be]",  // update and organize names and values
     activeItemText: isDiscoveryMode ? "text-white" : "text-[#f9d93d] font-medium",
     hoverText: isDiscoveryMode ? "hover:text-[#800000]" : "hover:text-[#f4baef]",
     hoverTextActive: isDiscoveryMode ? "hover:text-white" : "",
@@ -54,7 +57,7 @@ const createNavigationStyles = (isDiscoveryMode) => {
       : "font-medium",
     toggleButton: `relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${colors.toggleBg} hover:scale-110 transition-transform duration-100`,
     toggleIndicator: `pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform ${isDiscoveryMode ? 'translate-x-5' : 'translate-x-0.5'}`,
-    mobileMenuContainer: `lg:hidden border border-[#84520d] rounded-lg p-4 shadow-lg overflow-hidden ${colors.bg} absolute right-4 top-16 p-6`,
+    mobileMenuContainer: `lg:hidden border border-[#84520d] rounded-lg p-4 shadow-lg overflow-hidden ${colors.altBg} absolute right-4 top-16 p-6`,
     divider: "h-[0.05em] bg-[#84520d] hidden lg:block flex-grow self-end mb-2 ml-12 mr-8",
     menuButtonBase: "lg:hidden p-2 transition-all duration-100 group",
     menuIcon: "h-8 w-8 group-hover:h-9 group-hover:w-9 transition-all duration-100",
@@ -72,7 +75,7 @@ const createNavigationStyles = (isDiscoveryMode) => {
       classes += `w-full block text-center py-3 text-xl 
         ${isDiscoveryMode 
           ? (isActivePath ? `${colors.hoverBgActive} hover:text-white rounded-md` : `${colors.hoverTextInactive} ${colors.hoverBgInactive} rounded-md`) 
-          : (isActivePath ? "hover:bg-[#2a1c05] rounded-md" : "hover:bg-[#2a1c05] rounded-md")
+          :  `${colors.hoverBgInactive} rounded-md`
         } 
         hover:text-2xl transition-all duration-100 ${isActivePath ? 'font-bold' : 'font-light'}`;
     } 
@@ -87,9 +90,9 @@ const createNavigationStyles = (isDiscoveryMode) => {
   // Navigation item classes
   const getNavItemClass = (isActivePath, isMobile = false) => {
     if (isMobile) {
-      return `w-full text-center ${isActivePath ? colors.activeItemBg : colors.menuItemBg} rounded-md`;
+      return `w-full text-center ${isActivePath ? colors.activeItemBg : ''} rounded-md`;
     } else {
-      return `flex items-center ${isActivePath ? 'rounded-xl' : ''} ${isActivePath ? colors.activeItemBg : colors.menuItemBg}`;
+      return `flex items-center ${isActivePath ? 'rounded-xl' : ''} ${isActivePath ? colors.activeItemBg : ''}`;
     }
   };
 
