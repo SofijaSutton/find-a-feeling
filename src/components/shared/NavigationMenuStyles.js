@@ -14,7 +14,8 @@ const createNavigationStyles = (isDiscoveryMode) => {
     },
     red: {
       light: '#ff0000',
-      dark: '#800000'
+      dark: '#800000',
+      asterisk: isDiscoveryMode ? '#ff0000' : '#ff4d4d'
     },
     white: {
       cream: '#fff1be',
@@ -25,19 +26,19 @@ const createNavigationStyles = (isDiscoveryMode) => {
       medium: '#f0a3e9'
     },
     gold: '#f9d93d',
-    black: '#000000'
+    black: '#000000',
   };
 
   // Theme colors based on mode - these are Tailwind classes
   const colors = {
     // Background colors
     bg: isDiscoveryMode ? "bg-[#f0e448]" : "bg-[#1d1203]",
-    altBg: isDiscoveryMode ? "bg-[#fff1be]" : "bg-[#291904]",
+    altBg: isDiscoveryMode ? "bg-[#fff1be]" : "bg-[#462b07]",
     toggleBg: isDiscoveryMode ? "bg-[#000]" : "bg-[#84520d]",
     activeItemBg: isDiscoveryMode ? "bg-[#ff0000]" : "",
     hoverBgActive: isDiscoveryMode ? "hover:bg-[#800000]" : "hover:bg-[#2a1c05]",
     hoverBgInactive: isDiscoveryMode ? "hover:bg-[#e6da40]" : "hover:bg-[#1d1203]",
-    
+
     // Text colors
     text: isDiscoveryMode ? "text-[#1d1203]" : "text-[#fff1be]",
     title: isDiscoveryMode ? "text-[#ff0000]" : "text-[#fff1be]",
