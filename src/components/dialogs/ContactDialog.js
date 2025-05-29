@@ -4,13 +4,13 @@ import { Button } from "../../components/ui/button.jsx";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "../../components/ui/form.jsx";
 import { Input } from "../../components/ui/input.jsx";
 import { Textarea } from "../ui/textarea.jsx";
-import createNavigationStyles from '../shared/NavigationMenuStyles';
+import createGlobalStyles from '../../styles/globalStyles';
 import { cn } from '../../lib/utils';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
-  const { colors, baseColors, styles } = createNavigationStyles(isDiscoveryMode);
+  const { colors, baseColors, styles } = createGlobalStyles(isDiscoveryMode);
   const form = useForm({
     defaultValues: {
       email: '',
@@ -49,15 +49,17 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
   const buttonClasses = cn(
     "px-4 py-2 text-white font-medium transition-all duration-200",
     isDiscoveryMode 
-      ? "bg-[#ff0000] hover:bg-[#800000]"
-      : "bg-[#84520d] hover:bg-[#2a1c05]"
+      ? `bg-[${baseColors.red.light}] hover:bg-[${baseColors.red.dark}]`
+      : `bg-[${baseColors.brown.medium}] hover:bg-[${baseColors.brown.light}]` // TODO: hover color wrong here - tailwind react issue
   );
+
 
   const inputClasses = cn(
     isDiscoveryMode 
-      ? "border-[#2a1c05] focus:!border-[#2a1c05] focus:!ring-[#2a1c05]/50" 
-      : "border-[#84520d] focus:!border-[#fff1be] focus:!ring-[#fff1be]/50"
+      ? `border-[${baseColors.brown.light}] focus:!border-[${baseColors.brown.light}] focus:!ring-[${baseColors.brown.light}]/50` 
+      : `border-[${baseColors.brown.medium}] focus:!border-[${baseColors.white.cream}] focus:!ring-[${baseColors.white.cream}]/50` 
   );
+
 
   return (
     <>
@@ -65,12 +67,12 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
      <DialogContent 
       className={cn(
         "sm:max-w-[600px]",
-        "border border-[#84520d]",
+        `border border-[${baseColors.brown.medium}]`,
         "rounded-lg p-6",
         "shadow-lg",
         "overflow-hidden",
         "fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2",
-        isDiscoveryMode ? 'bg-[#fff1be]' : 'bg-[#462b07]'
+        isDiscoveryMode ? `bg-[${baseColors.white.cream}]` : `bg-[${baseColors.brown.mediumAlt}]`       
       )}
         style={{ 
           minWidth: '300px', 
@@ -130,7 +132,7 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
                       {...field} 
                       style={{ color: baseColors.red.asterisk }}
                       className={cn(
-                        `${isDiscoveryMode ? 'bg-white' : 'bg-[#33210a]'} ${colors.text}`,
+                        `${isDiscoveryMode ? 'bg-white' : `bg-[${baseColors.brown.lightAlt}]`} ${colors.text}`,
                         inputClasses,
                         fieldState.invalid && 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
                       )}
@@ -148,7 +150,7 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
                 <FormItem>
                   <FormLabel className={colors.text}>Message</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className={`${isDiscoveryMode ? 'bg-white' : 'bg-[#33210a]'} ${colors.text} ${inputClasses} min-h-[100px]`} />
+                    <Textarea {...field} className={`${isDiscoveryMode ? 'bg-white' : `bg-[${baseColors.brown.lightAlt}]`} ${colors.text} ${inputClasses} min-h-[100px]`} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

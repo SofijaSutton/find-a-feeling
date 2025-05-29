@@ -1,7 +1,7 @@
 import React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { ChevronDownIcon } from "lucide-react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { cn } from "../../lib/utils";
 
@@ -10,7 +10,7 @@ function NavigationMenu({ className, children, viewport = true, ...props }) {
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
       data-viewport={viewport}
-      className={cn("text-nowrap flex text-xl justify-end text-[#fefae0] bg-[#1d1203] custom-nav-menu", className)}
+      className={cn("text-nowrap flex text-xl justify-end text-foreground bg-background custom-nav-menu", className)}
       style={{
         "--radix-navigation-menu-viewport-width": "50%",
         "--radix-navigation-menu-viewport-padding": "0px"
@@ -75,21 +75,6 @@ function NavigationMenuContent({ className, ...props }) {
   );
 }
 
-// function NavigationMenuViewport({ className, ...props }) {
-//   return (
-//     <div className={cn("absolute top-full left-0 z-50 flex justify-center")}>
-//       <NavigationMenuPrimitive.Viewport
-//         data-slot="navigation-menu-viewport"
-//         className={cn(
-//           "origin-top-center bg-popover text-popover-foreground relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
-//           className
-//         )}
-//         {...props}
-//       />
-//     </div>
-//   );
-// }
-
 function NavigationMenuLink({ className, to, children, ...props }) {
   const location = useLocation();
   const isActive = location.pathname === to || 
@@ -104,8 +89,8 @@ function NavigationMenuLink({ className, to, children, ...props }) {
       <Link 
         to={to}
         className={cn(
-          "flex items-center font-light text-2xl transition-all duration-100 p-4 hover:text-[#f4baef] hover:text-[1.35em]",
-          isActive ? "text-[#fdc302] hover:text-[#f0a3e9]" : "",
+          "flex items-center font-light text-2xl transition-all duration-100 p-4 hover:text-accent hover:text-[1.35em]",
+          isActive ? "text-primary hover:text-accent" : "",
           className
         )}
       >
@@ -115,21 +100,6 @@ function NavigationMenuLink({ className, to, children, ...props }) {
   );
 }
 
-// function NavigationMenuIndicator({ className, ...props }) {
-//   return (
-//     <NavigationMenuPrimitive.Indicator
-//       data-slot="navigation-menu-indicator"
-//       className={cn(
-//         "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
-//         className
-//       )}
-//       {...props}
-//     >
-//       <div className="bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" />
-//     </NavigationMenuPrimitive.Indicator>
-//   );
-// }
-
 export {
   NavigationMenu,
   NavigationMenuList,
@@ -137,6 +107,4 @@ export {
   NavigationMenuContent,
   NavigationMenuTrigger,
   NavigationMenuLink,
-//   NavigationMenuIndicator,
-//   NavigationMenuViewport,
 };

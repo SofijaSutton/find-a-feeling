@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
+import createGlobalStyles from '../../styles/globalStyles';
+import Divider from './Divider';
 import { Link, useLocation } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '../../components/ui/navigation-menu';
-import createNavigationStyles from './NavigationMenuStyles';
-import Divider from './Divider';
 
 function AppNavigationMenu({ logo, title, onModeChange }) {
   const location = useLocation();
@@ -14,6 +14,8 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
     const savedMode = localStorage.getItem('discoveryMode');
     return savedMode ? JSON.parse(savedMode) : false;
   });
+
+  const { baseColors } = createGlobalStyles(isDiscoveryMode);
 
   // Save discovery mode preference to localStorage when it changes
   useEffect(() => {
@@ -41,7 +43,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
   const toggleDiscoveryMode = () => setIsDiscoveryMode(!isDiscoveryMode);
   const isActive = (path) => location.pathname === path;
 
-  const { colors, styles, getNavLinkClass, getNavItemClass } = createNavigationStyles(isDiscoveryMode);
+  const { colors, styles, getNavLinkClass, getNavItemClass } = createGlobalStyles(isDiscoveryMode);
 
   // Navigation items - could be moved outside component or passed as props for better reusability
   const navItems = [
@@ -71,7 +73,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
               </path>
             </svg>         
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-[#9c2ca0]" viewBox="0 0 1200 1200">
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 text-[${baseColors.pink.light}]`} viewBox="0 0 1200 1200">
               <path fill="currentColor" d="M471.749 0c-94.045 0-170.273 76.305-170.273 170.442c0 46.55 18.624 88.767 48.842 119.528H.001v284.069c31.224-36.108 77.389-59.006 128.842-59.006c94.044 0 170.273 76.304 170.273 170.44c0 94.137-76.229 170.44-170.274 170.44c-51.452 0-97.617-22.897-128.842-59.005V1200h368c-38.914-31.238-63.832-79.2-63.832-133.016c0-94.14 76.229-170.441 170.274-170.441c94.044 0 170.272 76.305 170.272 170.44c0 53.815-24.918 101.776-63.832 133.017h328.253V843.945c30.828 30.945 73.48 50.07 120.59 50.07c94.045 0 170.273-76.305 170.273-170.441c0-94.14-76.23-170.441-170.273-170.441c-47.109 0-89.762 19.125-120.59 50.07V289.969H593.18c30.228-30.763 48.843-72.971 48.843-119.528C642.023 76.304 565.793 0 471.749 0"/>
             </svg>
           )}

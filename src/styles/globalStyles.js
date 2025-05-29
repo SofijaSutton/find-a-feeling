@@ -1,5 +1,5 @@
-// Navigation menu theme colors and styles
-const createNavigationStyles = (isDiscoveryMode) => {
+// Global theme colors and styles
+const createGlobalStyles = (isDiscoveryMode) => {
   // Base colors - these are direct color values
   const baseColors = {
     yellow: {
@@ -9,7 +9,9 @@ const createNavigationStyles = (isDiscoveryMode) => {
     },
     brown: {
       light: '#2a1c05',
+      lightAlt: '#33210a',
       medium: '#84520d',
+      mediumAlt: '#462b07',
       dark: '#1d1203'
     },
     red: {
@@ -22,8 +24,12 @@ const createNavigationStyles = (isDiscoveryMode) => {
       pure: '#ffffff'
     },
     pink: {
-      light: '#f4baef',
-      medium: '#f0a3e9'
+      light: '#9c2ca0',
+      medium: '#6d1f70',
+    },
+    green: {
+      light: '#009422',
+      medium: '#005a2d',
     },
     gold: '#f9d93d',
     black: '#000000',
@@ -43,8 +49,8 @@ const createNavigationStyles = (isDiscoveryMode) => {
     text: isDiscoveryMode ? "text-[#1d1203]" : "text-[#fff1be]",
     title: isDiscoveryMode ? "text-[#ff0000]" : "text-[#fff1be]",
     altTitle: isDiscoveryMode ? "text-[#009422]" : "text-[#9c2ca0]",
-    titleHex: isDiscoveryMode? "#009422" : "#f9d93d",  // will want to recategorize this
-    altTitleH2: isDiscoveryMode ? "text-[#000]" : "text-[#fff1be]",  // update and organize names and values
+    titleHex: isDiscoveryMode? "#009422" : "#f9d93d",
+    altTitleH2: isDiscoveryMode ? "text-[#000]" : "text-[#fff1be]",
     activeItemText: isDiscoveryMode ? "text-white" : "text-[#f9d93d] font-medium",
     hoverText: isDiscoveryMode ? "hover:text-[#800000]" : "hover:text-[#f4baef]",
     hoverTextActive: isDiscoveryMode ? "hover:text-white" : "",
@@ -68,10 +74,7 @@ const createNavigationStyles = (isDiscoveryMode) => {
 
   // Helper function to generate navigation link classes
   const getNavLinkClass = (isActivePath, isMobile = false) => {
-    // Base classes
     let classes = `${isActivePath ? colors.activeItemText : colors.text} `;
-    
-    // Mobile-specific classes
     if (isMobile) {
       classes += `w-full block text-center py-3 text-xl 
         ${isDiscoveryMode 
@@ -79,12 +82,9 @@ const createNavigationStyles = (isDiscoveryMode) => {
           :  `${colors.hoverBgInactive} rounded-md`
         } 
         hover:text-2xl transition-all duration-100 ${isActivePath ? 'font-bold' : 'font-light'}`;
-    } 
-    // Desktop-specific classes
-    else {
+    } else {
       classes += `${isActivePath ? styles.activeItemHover : colors.hoverText}`;
     }
-    
     return classes;
   };
 
@@ -106,4 +106,4 @@ const createNavigationStyles = (isDiscoveryMode) => {
   };
 };
 
-export default createNavigationStyles;
+export default createGlobalStyles;

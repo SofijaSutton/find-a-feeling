@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import Divider from './Divider';
-import createNavigationStyles from './NavigationMenuStyles';
+import createGlobalStyles from '../../styles/globalStyles';
 import { cn } from '../../lib/utils';
 import ContactDialog from '../dialogs/ContactDialog';
 
 function Footer({ isDiscoveryMode }) {
-  // Get styles based on current mode
-  const { colors, styles } = createNavigationStyles(isDiscoveryMode);
+  const { colors } = createGlobalStyles(isDiscoveryMode);
   
-  // State for dialog open/close
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
   
-  // Contact button styles that match navigation menu items
   const contactButtonClasses = cn(
     "px-4 py-2 rounded-xl text-center font-medium transition-all duration-100 hover:scale-110",
     isDiscoveryMode 
-      ? "hover:bg-[#ff0000] hover:text-white" // Discovery mode hover style
-      : "hover:bg-[#2a1c05]" // Regular mode hover style
+      ? `${colors.hoverBgActive} hover:text-white`
+      : `${colors.hoverBgInactive}`
   );
 
   return (
