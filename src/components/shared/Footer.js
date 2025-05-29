@@ -27,9 +27,10 @@ function Footer({ isDiscoveryMode }) {
           
           {/* Center divider - only visible on larger screens */}
           <Divider 
+            isDiscoveryMode={isDiscoveryMode}
             className="hidden md:block flex-grow mx-8" 
-            style={{ marginBottom: '18px' }}
-          />
+              style={{ marginBottom: '18px' }}
+            />
           
           {/* Contact button */}
           <button 

@@ -116,6 +116,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
           </span>
         </Link>
         <Divider 
+          isDiscoveryMode={isDiscoveryMode}
           className="hidden lg:block flex-grow mx-8" 
           style={{ marginBottom: '-8px' }}
         />

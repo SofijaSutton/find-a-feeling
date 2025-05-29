@@ -9,6 +9,8 @@ import { cn } from '../../lib/utils';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
+// I messed up the stylings for this component - fix thesse color variables
+// also nav menu hightlight color is also broken - it might just be how to get the dynamic variables
 function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
   const { colors, baseColors, styles } = createGlobalStyles(isDiscoveryMode);
   const form = useForm({
@@ -50,16 +52,14 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
     "px-4 py-2 text-white font-medium transition-all duration-200",
     isDiscoveryMode 
       ? `bg-[${baseColors.red.light}] hover:bg-[${baseColors.red.dark}]`
-      : `bg-[${baseColors.brown.medium}] hover:bg-[${baseColors.brown.light}]` // TODO: hover color wrong here - tailwind react issue
+      : `bg-[${baseColors.brown.medium}] hover:bg-[${baseColors.brown.light}]`
   );
-
 
   const inputClasses = cn(
     isDiscoveryMode 
       ? `border-[${baseColors.brown.light}] focus:!border-[${baseColors.brown.light}] focus:!ring-[${baseColors.brown.light}]/50` 
       : `border-[${baseColors.brown.medium}] focus:!border-[${baseColors.white.cream}] focus:!ring-[${baseColors.white.cream}]/50` 
   );
-
 
   return (
     <>
@@ -130,9 +130,12 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
                     <Input 
                       type="email"
                       {...field} 
-                      style={{ color: baseColors.red.asterisk }}
+                      // style={{ color: baseColors.red.asterisk, backgroundColor: isDiscoveryMode ? baseColors.white.pure : baseColors.brown.lightAlt }}
+
+                      style={{ color: baseColors.red.asterisk, backgroundColor: isDiscoveryMode ? baseColors.white.pure : baseColors.brown.lightAlt }}
                       className={cn(
-                        `${isDiscoveryMode ? 'bg-white' : `bg-[${baseColors.brown.lightAlt}]`} ${colors.text}`,
+                        `${isDiscoveryMode ? '' : `${colors.text}`}`,
+                        colors.text,
                         inputClasses,
                         fieldState.invalid && 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
                       )}
@@ -150,7 +153,18 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
                 <FormItem>
                   <FormLabel className={colors.text}>Message</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className={`${isDiscoveryMode ? 'bg-white' : `bg-[${baseColors.brown.lightAlt}]`} ${colors.text} ${inputClasses} min-h-[100px]`} />
+                    <Textarea {...field} 
+                      className={`${colors.text} ${inputClasses} min-h-[100px]`} 
+                      style={{ backgroundColor: isDiscoveryMode ? baseColors.white.pure : baseColors.brown.lightAlt }}
+
+                      />
+
+                    {/* <Textarea 
+                      {...field} 
+                      
+                      style={{ backgroundColor: isDiscoveryMode ? baseColors.white.pure : baseColors.brown.lightAlt }}
+                      className={`${colors.text} ${inputClasses}`} 
+                    /> */}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
