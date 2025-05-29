@@ -55,7 +55,7 @@ function NavigationMenuTrigger({ className, children, ...props }) {
     >
       {children}
       <ChevronDownIcon
-        className="ml-1 transition-transform duration-300 group-data-[state=open]:rotate-180"
+        className="ml-1 transition-transform duration-100 group-data-[state=open]:rotate-180"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
@@ -104,7 +104,7 @@ function NavigationMenuLink({ className, to, children, ...props }) {
       <Link 
         to={to}
         className={cn(
-          "flex items-center font-light text-2xl transition-all duration-200 p-4 hover:text-[#f4baef] hover:text-[1.35em]",
+          "flex items-center font-light text-2xl transition-all duration-100 p-4 hover:text-[#f4baef] hover:text-[1.35em]",
           isActive ? "text-[#fdc302] hover:text-[#f0a3e9]" : "",
           className
         )}
