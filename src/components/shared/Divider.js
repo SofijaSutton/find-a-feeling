@@ -1,9 +1,10 @@
 import React from 'react';
+import { cn } from '../../lib/utils';
 
-function Divider({ className = "", color = "#84520d", ...props }) {
+function Divider({ className = "", ...props }) {
   return (
     <div 
-      className={`h-[0.05em] bg-[${color}] flex-grow ${className}`}
+      className={cn("h-[0.05em] bg-brand-brown flex-grow", className)}
       {...props}
     />
   );

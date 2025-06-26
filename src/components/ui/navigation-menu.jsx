@@ -10,7 +10,7 @@ function NavigationMenu({ className, children, viewport = true, ...props }) {
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
       data-viewport={viewport}
-      className={cn("text-nowrap flex text-xl justify-end text-[#fefae0] bg-[#1d1203] custom-nav-menu", className)}
+      className={cn("text-nowrap flex text-xl justify-end text-brand-white-cream bg-brand-brown-dark custom-nav-menu", className)}
       style={{
         "--radix-navigation-menu-viewport-width": "50%",
         "--radix-navigation-menu-viewport-padding": "0px"
@@ -104,8 +104,8 @@ function NavigationMenuLink({ className, to, children, ...props }) {
       <Link 
         to={to}
         className={cn(
-          "flex items-center font-light text-2xl transition-all duration-100 p-4 hover:text-[#f4baef] hover:text-[1.35em]",
-          isActive ? "text-[#fdc302] hover:text-[#f0a3e9]" : "",
+          "flex items-center font-light text-2xl transition-all duration-100 p-4 hover:text-brand-pink-light hover:text-[1.35em]",
+          isActive ? "text-brand-yellow-dark hover:text-brand-pink" : "",
           className
         )}
       >
