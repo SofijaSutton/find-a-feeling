@@ -8,7 +8,7 @@ import QuizPage from './components/quizPage.js';
 import ResourcesPage from './components/resourcesPage.js';
 import AppNavigationMenu from './components/shared/NavigationMenu';
 import Footer from './components/shared/Footer';
-import createNavigationStyles from './components/shared/NavigationMenuStyles.js';
+import { createTheme } from './styles/theme';
 import { cn } from "./lib/utils";
 
 function App() {
@@ -17,8 +17,9 @@ function App() {
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
-  // Get the background color based on current mode
-  const { colors, baseColors } = createNavigationStyles(isDiscoveryMode);
+  // Get the theme based on current mode
+  const theme = createTheme(isDiscoveryMode);
+  const { colors } = theme;
   
   // Handle mode change from navigation menu
   const handleModeChange = (mode) => {
@@ -29,13 +30,13 @@ function App() {
   const buttonClasses = cn(
     "mt-10 ml-auto mr-24 font-bold font-slab block text-white text-center font-bold px-8 rounded-3xl text-lg transition-all duration-100 transform hover:scale-110 flex items-center justify-center",
     isDiscoveryMode 
-      ? "bg-[#009422] hover:bg-[#005a2d] h-14 text-xl" // Discovery mode: green with darker green hover, taller height (56px)
-      : "bg-[#9c2ca0] hover:bg-[#821882] h-10"  // Regular mode: purple with darker purple hover, normal height (40px)
+      ? "bg-brand-green hover:bg-brand-green-dark h-14 text-xl" // Discovery mode: green with darker green hover, taller height (56px)
+      : "bg-brand-purple hover:bg-brand-purple-dark h-10"  // Regular mode: purple with darker purple hover, normal height (40px)
   );
 
   return (
     <Router>
-      <div className={`App ${colors.bg} flex flex-col min-h-screen`}>
+      <div className={`App ${colors.bg.primary} flex flex-col min-h-screen`}>
         <AppNavigationMenu 
           logo={logo} 
           title="Find-a-Feeling" 

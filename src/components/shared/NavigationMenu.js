@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from '../../components/ui/navigation-menu';
-import createNavigationStyles from './NavigationMenuStyles';
+import { createTheme } from '../../styles/theme';
 import Divider from './Divider';
 
 function AppNavigationMenu({ logo, title, onModeChange }) {
@@ -41,7 +41,10 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
   const toggleDiscoveryMode = () => setIsDiscoveryMode(!isDiscoveryMode);
   const isActive = (path) => location.pathname === path;
 
-  const { colors, styles, getNavLinkClass, getNavItemClass } = createNavigationStyles(isDiscoveryMode);
+  // Get theme configuration based on current mode
+  const theme = createTheme(isDiscoveryMode);
+  const { colors, components } = theme;
+  const navStyles = components.navigation;
 
   // Navigation items - could be moved outside component or passed as props for better reusability
   const navItems = [
@@ -53,15 +56,15 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
   // Extracted components for better readability
   const DiscoveryModeToggle = ({ className, isMobile = false }) => (
     <div className={`flex items-center ${className} ${isMobile ? 'justify-center w-full py-4 mt-2 ' : 'mr-6 whitespace-nowrap'}`}>
-      <span className={`mr-2 ${isMobile ? '' : 'font-bold'} ${colors.text}`}>Discovery Mode</span>
+      <span className={`mr-2 ${isMobile ? '' : 'font-bold'} ${colors.text.primary}`}>Discovery Mode</span>
       {/* TODO: replace with shadcn switch */}
       <button 
         onClick={toggleDiscoveryMode}
-        className={styles.toggleButton}
+        className={navStyles.toggleButton}
         role="switch"
         aria-checked={isDiscoveryMode}
       >
-        <span className={`${styles.toggleIndicator} z-10 flex items-center justify-center`}>
+        <span className={`${navStyles.toggleIndicator} z-10 flex items-center justify-center`}>
           {isDiscoveryMode ? (
             <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
               <path fill="000" d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z">
@@ -71,7 +74,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
               </path>
             </svg>         
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-[#9c2ca0]" viewBox="0 0 1200 1200">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-brand-purple" viewBox="0 0 1200 1200">
               <path fill="currentColor" d="M471.749 0c-94.045 0-170.273 76.305-170.273 170.442c0 46.55 18.624 88.767 48.842 119.528H.001v284.069c31.224-36.108 77.389-59.006 128.842-59.006c94.044 0 170.273 76.304 170.273 170.44c0 94.137-76.229 170.44-170.274 170.44c-51.452 0-97.617-22.897-128.842-59.005V1200h368c-38.914-31.238-63.832-79.2-63.832-133.016c0-94.14 76.229-170.441 170.274-170.441c94.044 0 170.272 76.305 170.272 170.44c0 53.815-24.918 101.776-63.832 133.017h328.253V843.945c30.828 30.945 73.48 50.07 120.59 50.07c94.045 0 170.273-76.305 170.273-170.441c0-94.14-76.23-170.441-170.273-170.441c-47.109 0-89.762 19.125-120.59 50.07V289.969H593.18c30.228-30.763 48.843-72.971 48.843-119.528C642.023 76.304 565.793 0 471.749 0"/>
             </svg>
           )}
@@ -83,16 +86,16 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
   const MenuButton = () => (
     // TODO: replace with shadcn button?
     <button 
-      className={styles.menuButtonBase + ` ${colors.text} ${colors.hoverText}`}
+      className={`${navStyles.menuButtonBase} ${colors.text.primary} ${colors.hoverText.default}`}
       onClick={toggleMenu}
       aria-label="Toggle menu"
     >
       {isMenuOpen ? (
-        <svg xmlns="http://www.w3.org/2000/svg" className={styles.menuIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className={navStyles.menuIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" className={styles.menuIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className={navStyles.menuIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       )}
@@ -100,7 +103,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
   );
 
   return (
-    <div className={`flex flex-col w-full ${colors.bg}`}>
+    <div className={`flex flex-col w-full ${colors.bg.primary}`}>
       <div className="flex justify-between py-2 items-center w-full px-4">
         {/* Left side logo and title */}
         <Link to="/" className="flex items-center">
@@ -109,7 +112,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
             className="h-12 mr-2" 
             alt="find-a-feeling logo" 
           />
-          <span className={`font-bold font-slab text-4xl whitespace-nowrap hidden min-[450px]:inline ${colors.title}`}>
+          <span className={`font-bold font-slab text-4xl whitespace-nowrap hidden min-[450px]:inline ${colors.text.title}`}>
             {title}
           </span>
         </Link>
@@ -127,16 +130,16 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
           <MenuButton />
           
           {/* Desktop navigation - shows on large screens only */}
-          <NavigationMenu className={`${colors.bg} ${styles.desktopNav}`}>
+          <NavigationMenu className={`${colors.bg.primary} ${navStyles.desktopNav}`}>
             <NavigationMenuList className="list-none flex">
               {navItems.map(item => (
                 <NavigationMenuItem 
                   key={item.path}
-                  className={getNavItemClass(isActive(item.path))}
+                  className={theme.getNavItemClass(isActive(item.path))}
                 >
                   <NavigationMenuLink 
                     to={item.path} 
-                    className={getNavLinkClass(isActive(item.path))}
+                    className={theme.getNavLinkClass(isActive(item.path))}
                   >
                     {item.label}
                   </NavigationMenuLink>
@@ -151,11 +154,11 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
       {isMenuOpen && (
         <NavigationMenu 
           ref={menuRef}
-          className={styles.mobileMenuContainer}
+          className={navStyles.mobileMenuContainer}
           style={{ 
             minWidth: '200px', 
             maxWidth: 'calc(100% - 2rem)', 
-            boxShadow: styles.mobileMenuShadow,
+            boxShadow: navStyles.mobileMenuShadow,
             zIndex: 50
           }}
         >
@@ -163,11 +166,11 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
             {navItems.map(item => (
               <NavigationMenuItem 
                 key={item.path}
-                className={getNavItemClass(isActive(item.path), true)}
+                className={theme.getNavItemClass(isActive(item.path), true)}
               >
                 <NavigationMenuLink 
                   to={item.path} 
-                  className={getNavLinkClass(isActive(item.path), true)}
+                  className={theme.getNavLinkClass(isActive(item.path), true)}
                   onClick={toggleMenu}
                 >
                   {item.label}

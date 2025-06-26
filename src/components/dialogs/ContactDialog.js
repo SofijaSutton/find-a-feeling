@@ -4,13 +4,15 @@ import { Button } from "../../components/ui/button.jsx";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "../../components/ui/form.jsx";
 import { Input } from "../../components/ui/input.jsx";
 import { Textarea } from "../ui/textarea.jsx";
-import createNavigationStyles from '../shared/NavigationMenuStyles';
+import { createTheme } from '../../styles/theme';
 import { cn } from '../../lib/utils';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
-  const { colors, baseColors, styles } = createNavigationStyles(isDiscoveryMode);
+  const theme = createTheme(isDiscoveryMode);
+  const { colors, baseColors, components } = theme;
+  
   const form = useForm({
     defaultValues: {
       email: '',
@@ -48,15 +50,15 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
 
   const buttonClasses = cn(
     "px-4 py-2 text-white font-medium transition-all duration-200",
-    isDiscoveryMode 
-      ? "bg-[#ff0000] hover:bg-[#800000]"
-      : "bg-[#84520d] hover:bg-[#2a1c05]"
+    isDiscoveryMode
+      ? "bg-brand-red hover:bg-brand-red-dark"
+      : "bg-brand-brown hover:bg-brand-brown-light"
   );
 
   const inputClasses = cn(
     isDiscoveryMode 
-      ? "border-[#2a1c05] focus:!border-[#2a1c05] focus:!ring-[#2a1c05]/50" 
-      : "border-[#84520d] focus:!border-[#fff1be] focus:!ring-[#fff1be]/50"
+      ? "border-brand-brown-light focus:!border-brand-brown-light focus:!ring-brand-brown-light/50" 
+      : "border-brand-brown focus:!border-brand-white-cream focus:!ring-brand-white-cream/50"
   );
 
   return (
@@ -65,25 +67,25 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
      <DialogContent 
       className={cn(
         "sm:max-w-[600px]",
-        "border border-[#84520d]",
+        "border border-brand-brown",
         "rounded-lg p-6",
         "shadow-lg",
         "overflow-hidden",
         "fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2",
-        isDiscoveryMode ? 'bg-[#fff1be]' : 'bg-[#462b07]'
+        isDiscoveryMode ? 'bg-brand-white-cream' : 'bg-brand-brown-light'
       )}
         style={{ 
           minWidth: '300px', 
           width: '50%', 
           maxWidth: 'calc(100% - 2rem)', 
-          boxShadow: styles.mobileMenuShadow,
+          boxShadow: components.navigation.mobileMenuShadow,
           zIndex: 50
         }}  
         aria-describedby="Contact-dialog-description"
       >
         <div className="flex justify-center mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" width={48} height={48} viewBox="0 0 24 24">
-            <g fill="none" stroke={colors.titleHex} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+            <g fill="none" stroke={colors.hex.title} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
               <path strokeDasharray={64} strokeDashoffset={64} d="M4 5h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z">
                 <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"></animate>
               </path>
@@ -93,8 +95,8 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
             </g>
           </svg>
         </div>
-        <DialogTitle className={`font-bold font-slab text-3xl ${colors.altTitleH2} text-center`}>Contact Us</DialogTitle>  
-        <DialogDescription className={`text-center mb-4 ${colors.altTitleH2}`}>
+        <DialogTitle className={`font-bold font-slab text-3xl ${colors.text.altTitleH2} text-center`}>Contact Us</DialogTitle>  
+        <DialogDescription className={`text-center mb-4 ${colors.text.altTitleH2}`}>
           Please, be in touch!
         </DialogDescription>      
         <Form {...form}>
@@ -121,16 +123,16 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
               }}
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className={`${colors.text}`}>
-                    Email <span style={{ color: baseColors.red.asterisk }}>*</span>
+                  <FormLabel className={`${colors.text.primary}`}>
+                    Email <span style={{ color: colors.hex.asterisk }}>*</span>
                   </FormLabel>     
                   <FormControl>
                     <Input 
                       type="email"
                       {...field} 
-                      style={{ color: baseColors.red.asterisk }}
+                      style={{ color: colors.hex.asterisk }}
                       className={cn(
-                        `${isDiscoveryMode ? 'bg-white' : 'bg-[#33210a]'} ${colors.text}`,
+                        `${isDiscoveryMode ? 'bg-white' : 'bg-brand-brown-dark'} ${colors.text.primary}`,
                         inputClasses,
                         fieldState.invalid && 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
                       )}
@@ -146,9 +148,9 @@ function ContactDialog({ isOpen, onClose, isDiscoveryMode }) {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={colors.text}>Message</FormLabel>
+                  <FormLabel className={colors.text.primary}>Message</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className={`${isDiscoveryMode ? 'bg-white' : 'bg-[#33210a]'} ${colors.text} ${inputClasses} min-h-[100px]`} />
+                    <Textarea {...field} className={`${isDiscoveryMode ? 'bg-white' : 'bg-brand-brown-dark'} ${colors.text.primary} ${inputClasses} min-h-[100px]`} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

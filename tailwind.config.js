@@ -1,6 +1,4 @@
-/** @type {import('tailwindcss').Config}  // Add this safelist to ensure the border-border class is generated
-  safelist: ['border-border'],
-} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -42,6 +40,49 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Brand colors
+        brand: {
+          // Brown palette
+          brown: {
+            light: "#2a1c05",
+            DEFAULT: "#84520d", // This is your brand-brown
+            dark: "#1d1203",
+          },
+          // Yellow palette
+          yellow: {
+            light: "#f0e448",
+            DEFAULT: "#e6da40",
+            dark: "#fdc302",
+          },
+          // Red palette
+          red: {
+            light: "#ff0000",
+            DEFAULT: "#ff0000",
+            dark: "#800000",
+          },
+          // White variants
+          white: {
+            cream: "#fff1be",
+            DEFAULT: "#ffffff",
+          },
+          // Pink palette
+          pink: {
+            light: "#f4baef",
+            DEFAULT: "#f0a3e9",
+          },
+          // Green palette
+          green: {
+            DEFAULT: "#009422",
+            dark: "#005a2d",
+          },
+          // Purple palette
+          purple: {
+            DEFAULT: "#9c2ca0",
+            dark: "#821882",
+          },
+          gold: "#f9d93d",
+          black: "#000000",
+        },
       },
       fontFamily: {
         slab: ['"Alfa Slab One"', 'serif'],
@@ -67,6 +108,25 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    'border-border',
+    // Add commonly used brand color classes to safelist to ensure they're generated
+    'bg-brand-brown',
+    'bg-brand-brown-light',
+    'bg-brand-brown-dark',
+    'bg-brand-yellow',
+    'bg-brand-red',
+    'bg-brand-gold',
+    'text-brand-brown',
+    'text-brand-yellow',
+    'text-brand-red',
+    'text-brand-gold',
+    'border-brand-brown',
+    'bg-brand-green',
+    'bg-brand-green-dark',
+    'bg-brand-purple',
+    'bg-brand-purple-dark',
+  ],
   plugins: [
     require("tailwindcss-animate"),
     function({ addUtilities }) {
@@ -76,6 +136,6 @@ module.exports = {
         },
       }
       addUtilities(newUtilities)
-    }]
+    }
+  ]
 }
-
