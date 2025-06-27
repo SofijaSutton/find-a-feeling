@@ -42,50 +42,53 @@ module.exports = {
         },
         // Brand colors
         brand: {
-          // Brown palette
-          brown: {
-            light: "#2a1c05",
-            DEFAULT: "#84520d", // This is your brand-brown
-            dark: "#1d1203",
-          },
-          // Yellow palette
           yellow: {
-            light: "#f0e448",
-            DEFAULT: "#e6da40",
-            dark: "#fdc302",
+            light: '#fbe600',  // Sunny Yellow - Background color, playful and high contrast
+            DEFAULT: '#fbe600',  // Using Sunny Yellow as default for primary usage
+            medium: '#e6b700',  // Goldenrod - Detail elements and flag colors (kept for accents)
+            dark: '#fdc302'
           },
-          // Red palette
+          brown: {
+            light: '#c99f66', // Clay Tan - Brick and sidewalk variation
+            DEFAULT: '#8c3f19', // Barn Brown - Roofs and building trims - earthy and rich
+            dark: '#1d1203'
+          },
           red: {
-            light: "#ff0000",
-            DEFAULT: "#ff0000",
-            dark: "#800000",
+            light: '#e7661e', // Sunset Orange - Taxi body and accents - warm and punchy
+            DEFAULT: '#c9241f', // Firetruck Red - Used on buildings, bus, and taxi - strong 70s red
+            dark: '#800000',
           },
-          // White variants
           white: {
-            cream: "#fff1be",
-            DEFAULT: "#ffffff",
+            cream: '#fff5d6', // Cream White - Window trims and soft backgrounds
+            pure: '#ffffff'
           },
-          // Pink palette
           pink: {
-            light: "#f4baef",
-            DEFAULT: "#f0a3e9",
+            light: '#f595a8', // Candy Pink - Seen in clothing and small accents
+            DEFAULT: '#f0a3e9'
           },
-          // Green palette
           green: {
-            DEFAULT: "#009422",
-            dark: "#005a2d",
+            light: '#89b84a', // Apple Green - Tree foliage - vibrant but natural
+            DEFAULT: '#009422',
+            dark: '#005a2d'
           },
-          // Purple palette
           purple: {
-            DEFAULT: "#9c2ca0",
-            dark: "#821882",
+            light: '#d5c4dc', // Pastel Purple - Seen in some outfits and signs - soft accent
+            DEFAULT: '#9c2ca0',
+            dark: '#821882'
           },
-          gold: "#f9d93d",
-          black: "#000000",
+          blue: {
+            light: '#d9ecf8', // Sky Blue - Streets and sky - calming base color
+            DEFAULT: '#98b0e1', // Lilac Blue - Clothing, shading
+          },
+          gray: {
+            DEFAULT: '#4c4c4c', // Charcoal Gray - Text details and outlines
+          },
+          gold: '#e6b700', // Goldenrod - Detail elements and flag colors
+          black: '#000000',
         },
       },
       fontFamily: {
-        slab: ['"Alfa Slab One"', 'serif'],
+        slab: ['Roboto Slab', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

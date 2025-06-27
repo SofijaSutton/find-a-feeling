@@ -4,7 +4,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuL
 import { createTheme } from '../../styles/theme';
 import Divider from './Divider';
 
-function AppNavigationMenu({ logo, title, onModeChange }) {
+function AppNavigationMenu({ logo, onModeChange }) {
   const location = useLocation();
 
   const menuRef = useRef(null);
@@ -113,7 +113,7 @@ function AppNavigationMenu({ logo, title, onModeChange }) {
             alt="find-a-feeling logo" 
           />
           <span className={`font-bold font-slab text-4xl whitespace-nowrap hidden min-[450px]:inline ${colors.text.title}`}>
-            {title}
+            Find-a-Feeling
           </span>
         </Link>
         <Divider 
